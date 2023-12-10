@@ -1,0 +1,119 @@
+<!-- report.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore Report</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .checkbox-table, .filter-table {
+            width: 48%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .checkbox-table th, .checkbox-table td,
+        .filter-table th, .filter-table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .checkbox-table td:nth-child(2) {
+            /* Set a specific width for the second column (Display column) */
+            width: 60px; /* Adjust the width as needed */
+        }
+    </style>
+</head>
+<body>
+    <h1>Bookstore Report</h1>
+
+    <form method="post" action="{{ url_for('generate_report') }}">
+        <div class="container">
+            <div>
+                <label>Columns to Display:</label>
+                <table class="checkbox-table">
+                    <thead>
+                        <tr>
+                            <th>Column Name</th>
+                            <th>Display</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for column in ['ISBN', 'Title', 'AuthorId', 'PublisherId', 'GenreId', 'PublishYear', 'Price', 'Quantity'] %}
+                            <tr>
+                                <td>{{ column }}</td>
+                                <td>
+                                    <input type="checkbox" name="columns" value="{{ column }}" checked>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+      <div>
+    <label>Filter Columns:</label>
+    <table class="filter-table">
+        <thead>
+            <tr>
+                <th>Column</th>
+                <th>Operator</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for column in ['ISBN', 'Title', 'AuthorId', 'PublisherId', 'GenreId', 'PublishYear', 'Price', 'Quantity'] %}
+                <tr>
+                    <td>{{ column }}</td>
+                    <td>
+                        <select name="filter_operator_{{ column }}">
+                            <option value="="> = </option>
+                            <option value="!="> != </option>
+                            <option value="<="> <= </option>
+                            <option value="<"> < </option>
+                            <option value=">="> >= </option>
+                            <option value=">"> > </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="filter_value_{{ column }}">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+        </div>
+
+        <input type="submit" value="Generate Report">
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                {% for column in selected_columns %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    {% for column in selected_columns %}
+                        <td>{{ book[column] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('home') }}" class="btn-back">Back to Main Page</a>
+</body>
+</html>

@@ -1,39 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a New Book</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Add a New Book</h1>
-    <form method="post" action="/newbookorder">
+    <form method="post" action="{{ url_for('add_book') }}">
         <label for="ISBN">ISBN:</label>
-        <input type="text" name="ISBN" id="ISBN" required><br>
+        <input type="text" name="ISBN" id="ISBN" required>
 
         <label for="Title">Title:</label>
-        <input type="text" name="Title" id="Title" required><br>
+        <input type="text" name="Title" id="Title" required>
 
         <label for="AuthorFirstName">Author First Name:</label>
-        <input type="text" name="AuthorFirstName" id="AuthorFirstName" required><br>
+        <input type="text" name="AuthorFirstName" id="AuthorFirstName" required>
 
         <label for="AuthorLastName">Author Last Name:</label>
-        <input type="text" name="AuthorLastName" id="AuthorLastName" required><br>
+        <input type="text" name="AuthorLastName" id="AuthorLastName" required>
 
         <label for="PublisherId">Publisher ID:</label>
-        <input type="text" name="PublisherId" id="PublisherId"><br>
+        <input type="text" name="PublisherId" id="PublisherId">
 
         <label for="GenreId">Genre ID:</label>
-        <input type="text" name="GenreId" id="GenreId"><br>
+        <input type="text" name="GenreId" id="GenreId">
 
         <label for="PublishYear">Publish Year:</label>
-        <input type="text" name="PublishYear" id="PublishYear"><br>
+        <input type="text" name="PublishYear" id="PublishYear">
 
         <label for="Price">Price:</label>
-        <input type="text" name="Price" id="Price"><br>
+        <input type="text" name="Price" id="Price">
 
         <label for="Quantity">Quantity:</label>
-        <input type="text" name="Quantity" id="Quantity"><br>
+        <input type="text" name="Quantity" id="Quantity">
 
         <input type="submit" value="Add Book">
     </form>
+    <a href="{{ url_for('home') }}" class="btn-back">Back to Main Page</a>
 </body>
 </html>

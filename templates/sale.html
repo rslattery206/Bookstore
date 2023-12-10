@@ -1,0 +1,27 @@
+<!-- sale.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Sale</h1>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    <form method="post" action="/sale">
+        <label for="ISBN">ISBN:</label>
+        <input type="text" name="ISBN" id="ISBN" required>
+
+        <label for="Quantity">Quantity:</label>
+        <input type="text" name="Quantity" id="Quantity" required>
+
+        <input type="submit" value="Make Sale">
+    </form>
+<a href="{{ url_for('home') }}" class="btn-back">Back to Main Page</a>
+</body>
+</html>

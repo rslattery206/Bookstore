@@ -31,4 +31,3 @@ CREATE TABLE IF NOT EXISTS Books (
     FOREIGN KEY (PublisherId) REFERENCES Publishers (PublisherId),
     FOREIGN KEY (GenreId) REFERENCES Genres (GenreId)
 );
-

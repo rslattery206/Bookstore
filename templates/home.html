@@ -1,0 +1,21 @@
+<!-- home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Bookstore</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to Your Bookstore</h1>
+    <p>Explore our collection and place a new book order!</p>
+
+    <a href="{{ url_for('add_book') }}" class="btn">New Book Order</a>
+
+    <a href="{{ url_for('sale') }}" class="btn">Make a Sale</a>
+
+    <a href="{{ url_for('generate_report') }}" class="btn">Generate Report</a>
+</body>
+</html>
